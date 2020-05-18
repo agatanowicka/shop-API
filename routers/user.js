@@ -30,7 +30,7 @@ router.post(
             .trim()
             .not()
             .isEmpty(),
-        body('adress')
+        body('address')
             .not()
             .isEmpty()
     ],

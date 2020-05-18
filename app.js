@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const productRouters= require("./routers/product");
 const userRouters=require("./routers/user");
 const orderRouters=require("./routers/order");
+const cardMenuRouters= require('./routers/cardMenu');
 const mongoose = require('mongoose');
 const app = express();
 const userIsLogged= require("./middleware/userIsLogged")
@@ -29,5 +30,6 @@ app.use(userIsLogged);
 app.use('/colection', productRouters);
 app.use("/user", userRouters);
 app.use("/order", orderRouters);
+app.use('/cardMenu', cardMenuRouters);
 
 app.listen(8080);

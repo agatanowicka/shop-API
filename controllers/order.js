@@ -28,21 +28,18 @@ exports.getOrders = (req, res) => {
             return completeOrders;
         })
         .then(completeOrders => {
-            res.status(201).json({
-                olders: completeOrders
-            });
+            res.status(200).json( completeOrders
+            );
         })
-        .catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
-            }
-        })
+        .catch(err =>{
+            res.send(500);}
+        )
 };
 
 exports.createOrder = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        error.statusCode = 422;
+        error.statusCode = 422; 
     }
     const products = req.body.products;
     let allPrice = 0;
@@ -57,12 +54,14 @@ exports.createOrder = (req, res) => {
         .then(foundProducts => {
             for (let i = 0; i < foundProducts.length; i++) {
                 const foundProduct = foundProducts[i];
+                const product_id=products[i].productId;
                 if (foundProduct.value !== null) {
                     for (let j = 0; j < foundProduct.value.sizeAndQuantity.length; j++) {
                         if (foundProduct.value.sizeAndQuantity[j].size === products[i].size
                             && products[i].quantity <= foundProduct.value.sizeAndQuantity[j].quantity
                         ) {
-                            availableProducts.push(products[i]);
+                            
+                            availableProducts.push({productId:product_id, size:products[i].size, quantity:products[i].quantity, price:foundProduct.value.price});
                             allPrice = allPrice + products[i].quantity * foundProduct.value.price;
                             foundProduct.value.sizeAndQuantity[j].quantity = foundProduct.value.sizeAndQuantity[j].quantity - products[i].quantity;
                             foundProduct.value.save();
@@ -88,13 +87,11 @@ exports.createOrder = (req, res) => {
             return foundUser.save();
         })
         .then(result => {
-            res.status(201).json({
+            res.status(200).json({
                 foundUser: result
             });
         })
         .catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
-            }
+           res.send(500);
         })
 }

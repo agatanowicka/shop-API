@@ -12,7 +12,7 @@ exports.signup = (req, res) => {
     const firstName = req.body.firstName;
     const password = req.body.password;
     const lastName = req.body.lastName;
-    const adress = req.body.adress;
+    const address = req.body.address;
     bcrypt
         .hash(password, 12)
         .then(hashedPw => {
@@ -21,19 +21,17 @@ exports.signup = (req, res) => {
                 password: hashedPw,
                 firstName: firstName,
                 lastName: lastName,
-                adress: adress
+                address: address,
+                isAdministrator:false,
             })
             return user.save();
         })
         .then(result => {
-            res.status(201).json({
-                user: result
-            });
+            res.status(201).json( result
+            );
         })
         .catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
-            }
+           res.send(500);
         });
 };
 
@@ -61,7 +59,7 @@ exports.login = (req, res) => {
           'extrasupersecretkey',
           { expiresIn: '1h' }
         );
-        res.status(200).json({ token: token, userId: loadedUser._id.toString() });
+        return res.json({ token: token, userId: loadedUser._id.toString(), isAdministrator:loadedUser.isAdministrator });
       })
       .catch(err => {
         if (!err.statusCode) {
