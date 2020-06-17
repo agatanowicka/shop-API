@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator/check');
 const Order = require("../models/orders");
 const User = require("../models/user");
 const Product = require("../models/product");
+const mongoose = require('mongoose');
 
 exports.getOrders = (req, res) => {
     User
@@ -28,18 +29,18 @@ exports.getOrders = (req, res) => {
             return completeOrders;
         })
         .then(completeOrders => {
-            res.status(200).json( completeOrders
-            );
+            res.status(200).json(completeOrders);
         })
-        .catch(err =>{
-            res.send(500);}
+        .catch(err => {
+            res.send(500);
+        }
         )
 };
 
 exports.createOrder = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        error.statusCode = 422; 
+        res.send(422);
     }
     const products = req.body.products;
     let allPrice = 0;
@@ -50,18 +51,25 @@ exports.createOrder = (req, res) => {
     for (let i = 0; i < products.length; i++) {
         promises.push(Product.findById(products[i].productId))
     }
-    Promise.allSettled(promises)
+    let session = null;
+    let user = null;
+    mongoose.startSession()
+        .then((_session) => {
+            session = _session;
+            session.startTransaction();
+            return Promise.allSettled(promises);
+        })
         .then(foundProducts => {
             for (let i = 0; i < foundProducts.length; i++) {
                 const foundProduct = foundProducts[i];
-                const product_id=products[i].productId;
+                const product_id = products[i].productId;
                 if (foundProduct.value !== null) {
                     for (let j = 0; j < foundProduct.value.sizeAndQuantity.length; j++) {
                         if (foundProduct.value.sizeAndQuantity[j].size === products[i].size
                             && products[i].quantity <= foundProduct.value.sizeAndQuantity[j].quantity
                         ) {
-                            
-                            availableProducts.push({productId:product_id, size:products[i].size, quantity:products[i].quantity, price:foundProduct.value.price});
+
+                            availableProducts.push({ productId: product_id, size: products[i].size, quantity: products[i].quantity, price: foundProduct.value.price });
                             allPrice = allPrice + products[i].quantity * foundProduct.value.price;
                             foundProduct.value.sizeAndQuantity[j].quantity = foundProduct.value.sizeAndQuantity[j].quantity - products[i].quantity;
                             foundProduct.value.save();
@@ -87,11 +95,18 @@ exports.createOrder = (req, res) => {
             return foundUser.save();
         })
         .then(result => {
-            res.status(200).json({
-                foundUser: result
+            user = result;
+            return session.commitTransaction()
+        })
+        .then(() =>
+            session.endSession()
+        ).then(() => {
+            res.status(500).json({
+                foundUser: user
             });
         })
         .catch(err => {
-           res.send(500);
+            console.log(err);
+            res.send(500);
         })
 }

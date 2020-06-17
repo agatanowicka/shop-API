@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema({
     quantity: Number,
     price: String
   }],
-  allPrice:Number,
+  allPrice: Number,
   paid: Boolean,
   date: { type: Date, default: Date.now }
 });

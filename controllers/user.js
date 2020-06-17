@@ -2,11 +2,13 @@ const { validationResult } = require('express-validator/check');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
+require('dotenv').config()
 
 exports.signup = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        errors.statusCode = 422;
+      res.send(422);
+      return;
     }
     const email = req.body.email;
     const firstName = req.body.firstName;
@@ -27,8 +29,7 @@ exports.signup = (req, res) => {
             return user.save();
         })
         .then(result => {
-            res.status(201).json( result
-            );
+            return res.json(result);
         })
         .catch(err => {
            res.send(500);
@@ -42,28 +43,28 @@ exports.login = (req, res) => {
     User.findOne({ email: email })
       .then(user => {
         if (!user) {
-          error.statusCode = 401;
+          res.send(401);
+          return
         }
         loadedUser = user;
         return bcrypt.compare(password, user.password);
       })
       .then(isEqual => {
         if (!isEqual) {
-          error.statusCode = 401;
+          res.send(401);
+          return
         }
         const token = jwt.sign(
           {
             email: loadedUser.email,
             userId: loadedUser._id.toString()
           },
-          'extrasupersecretkey',
+          process.env.KEY,
           { expiresIn: '1h' }
         );
         return res.json({ token: token, userId: loadedUser._id.toString(), isAdministrator:loadedUser.isAdministrator });
       })
       .catch(err => {
-        if (!err.statusCode) {
-          err.statusCode = 500;
-        }
+        res.send(500);
       });
 };
