@@ -1,0 +1,140 @@
+[
+    {
+        "_id": "5eec8e9de2782e1dfc5acff1",
+        "images": [
+            "https://cdn.pixabay.com/photo/2016/11/29/06/46/adult-1867883__340.jpg"
+        ],
+        "type": "Trousers",
+        "name": "Trouser 1",
+        "price": "100",
+        "color": "White",
+        "fabric": "Jeans",
+        "typeOfMaterial": "Jeans",
+        "careTips": "Wash at 40 degrees Celsius",
+        "details": "Golden buttons",
+        "productNumber": "123",
+        "sizeAndQuantity": [
+            {
+                "_id": "5eec8e9de2782e1dfc5acff2",
+                "size": "34",
+                "quantity": "10"
+            },
+            {
+                "_id": "5eec8e9de2782e1dfc5acff3",
+                "size": "36",
+                "quantity": "10"
+            },
+            {
+                "_id": "5eec8e9de2782e1dfc5acff4",
+                "size": "38",
+                "quantity": "10"
+            },
+            {
+                "_id": "5eec8e9de2782e1dfc5acff5",
+                "size": "40",
+                "quantity": "5"
+            }
+        ]
+    },
+    {
+        "_id": "5eec90293978f2362cd67203",
+        "images": [
+            "https://cdn.pixabay.com/photo/2015/07/28/09/18/dress-864107__340.jpg"
+        ],
+        "type": "Dresses",
+        "name": "Dress 1",
+        "price": "120",
+        "color": "Red",
+        "fabric": "Cotton",
+        "typeOfMaterial": "Cotton",
+        "careTips": "Hand wash at 30 degrees Celsius",
+        "details": "Short sleeves",
+        "productNumber": "456",
+        "sizeAndQuantity": [
+            {
+                "_id": "5eec90293978f2362cd67204",
+                "size": "m",
+                "quantity": "5"
+            },
+            {
+                "_id": "5eec90293978f2362cd67205",
+                "size": "l",
+                "quantity": "5"
+            },
+            {
+                "_id": "5eec90293978f2362cd67206",
+                "size": "xl",
+                "quantity": "5"
+            }
+        ]
+    },
+    {
+        "_id": "5eec91aba165c30704bc68a3",
+        "images": [
+            "https://cdn.pixabay.com/photo/2016/06/03/17/35/shoe-1433925__340.jpg"
+        ],
+        "type": "Shoes",
+        "name": "Shoes 1 ",
+        "price": "200",
+        "color": "Gray",
+        "fabric": "Cotton",
+        "typeOfMaterial": "Cotton",
+        "careTips": "Do not machine wash",
+        "details": "Red shoelaces",
+        "productNumber": "789",
+        "sizeAndQuantity": [
+            {
+                "_id": "5eec91aba165c30704bc68a4",
+                "size": "38",
+                "quantity": "6"
+            },
+            {
+                "_id": "5eec91aba165c30704bc68a5",
+                "size": "40",
+                "quantity": "8"
+            },
+            {
+                "_id": "5eec91aba165c30704bc68a6",
+                "size": "39",
+                "quantity": "10"
+            }
+        ]
+    },
+    {
+        "_id": "5eec92c05bdb6b2cbc4d3abb",
+        "images": [
+            "https://cdn.pixabay.com/photo/2016/05/22/18/55/woman-1409015__340.jpg"
+        ],
+        "type": "Blouses",
+        "name": "Blouse 1",
+        "price": "150",
+        "color": "Yellow",
+        "fabric": "Viscose",
+        "typeOfMaterial": "Viscose",
+        "careTips": "Do not iron",
+        "details": "Long Sleeve",
+        "productNumber": "147",
+        "sizeAndQuantity": [
+            {
+                "_id": "5eec92c05bdb6b2cbc4d3abc",
+                "size": "34",
+                "quantity": "3"
+            },
+            {
+                "_id": "5eec92c05bdb6b2cbc4d3abd",
+                "size": "36",
+                "quantity": "5"
+            },
+            {
+                "_id": "5eec92c05bdb6b2cbc4d3abe",
+                "size": "38",
+                "quantity": "8"
+            },
+            {
+                "_id": "5eec92c05bdb6b2cbc4d3abf",
+                "size": "40",
+                "quantity": "2"
+            }
+        ]
+    }
+]

@@ -8,6 +8,10 @@ In the project directory, you can run:
 
 Install all required dependencies. Based on package.json file.
 
+### `npm run initDB`
+
+Add json files that are in the dataToMongoose folder to the database.
+
 ### `npm run dev`
 
 Runs app in development mode. Including hot reload by [nodemon](https://www.npmjs.com/package/nodemon)

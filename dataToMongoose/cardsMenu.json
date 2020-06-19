@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "5eec8ba3c5230d379002845a",
+        "image": "https://cdn.pixabay.com/photo/2014/08/26/21/49/jeans-428614__340.jpg",
+        "title": "Trousers",
+        "type": "Trousers"
+    },
+    {
+        "_id": "5eec8beec5230d379002845b",
+        "image": "https://cdn.pixabay.com/photo/2018/01/11/09/39/woman-3075704__340.jpg",
+        "title": "Dresses",
+        "type": "Dresses"
+    },
+    {
+        "_id": "5eec8c70c5230d379002845c",
+        "image": "https://cdn.pixabay.com/photo/2017/04/09/18/54/shoes-2216498__340.jpg",
+        "title": "Shoes",
+        "type": "Shoes"
+    },
+    {
+        "_id": "5eec8cd2c5230d379002845d",
+        "image": "https://cdn.pixabay.com/photo/2015/09/14/19/36/face-940018__340.jpg",
+        "title": "Blouses",
+        "type": "Blouses"
+    }
+]
