@@ -1,0 +1,18 @@
+[
+    {
+        "email": "user1@gmail.com",
+        "password": "$2a$12$ejgqaWOKhTB34BYwdU4fUuQ9.6DhIOZIhyOzqqeF0PLqFQk64BhHO",
+        "firstName": "User",
+        "lastName": "1",
+        "address": "Poznań",
+        "isAdministrator": true
+    },
+    {
+        "email": "user2@gmail.com",
+        "password": "$2a$12$j6FsZgNIRQkj57GS65O2JujGDaMbScFikL7K8nYIEEiaFSAWuG9M2",
+        "firstName": "User",
+        "lastName": "2",
+        "address": "Poznań",
+        "isAdministrator": false
+    }
+]

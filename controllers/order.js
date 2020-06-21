@@ -42,6 +42,7 @@ exports.createOrder = (req, res) => {
     if (!errors.isEmpty()) {
         res.send(422);
     }
+    console.log(JSON.stringify(req.body));
     const products = req.body.products;
     let allPrice = 0;
     const productsErrors = [];

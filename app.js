@@ -8,6 +8,11 @@ const mongoose = require('mongoose');
 const app = express();
 const userIsLogged = require("./middleware/userIsLogged")
 const { updateIfCurrentPlugin } = require('mongoose-update-if-current');
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 require('dotenv').config()
 
 app.use(bodyParser.json());
@@ -31,9 +36,12 @@ mongoose.connect(mongoPath, { useNewUrlParser: true, useUnifiedTopology: true, u
 mongoose.plugin(updateIfCurrentPlugin);
 
 app.use(userIsLogged);
-app.use('/collection', productRouters);
-app.use("/user", userRouters);
-app.use("/order", orderRouters);
-app.use('/cardMenu', cardMenuRouters);
+app.use('/api/collection', productRouters);
+app.use("/api/user", userRouters);
+app.use("/api/order", orderRouters);
+app.use('/api/cardMenu', cardMenuRouters);
 
-app.listen(8080);
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+});
+app.listen(3000);
